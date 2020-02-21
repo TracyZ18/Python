@@ -1,0 +1,4 @@
+name: Random Name
+id: 10346294
+courses: MATH 141, COMP 251
+college: Trinity
