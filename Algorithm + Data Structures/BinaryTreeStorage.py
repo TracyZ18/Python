@@ -1,6 +1,10 @@
-# store binary tree as binary string
-# preorder; depend on children, assign 00,01,10,11
+'''
+Binary String Storage of Binary Trees
+store binary tree as binary string
+preorder; depend on children, assign 00,01,10,11
+'''
 
+# pip install binarytree
 from binarytree import Node, build
 values = [1,2,4,3,None,None,None,None,5,None,None,None,None,None,None,None,None,6,7]
 root = build(values)
@@ -132,12 +136,14 @@ print(root)
 bin_list = []
 list_root = Node(0)
 getString(root, bin_list)
+print(bin_list)
 buildTree(list_root, bin_list)
 print(list_root)
 
 # int implementation
 int_root = Node(0)
 bin_int = getBinString(root, 0)
+print("{0:b}".format(bin_int))
 buildBinTree(int_root, bin_int)
 print(int_root)
 
