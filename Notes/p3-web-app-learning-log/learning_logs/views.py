@@ -6,7 +6,8 @@ from .models import Topic, Entry
 
 def index(request):
     """The home page for Learning Log"""
-    return render(request, 'learning_logs/index.html')
+    context = {'title': "Learning Log"}
+    return render(request, 'learning_logs/index.html', context)
 
 
 from django.contrib.auth.decorators import login_required
@@ -15,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 def topics(request):
     """Show all topics."""
     topics = Topic.objects.filter(owner=request.user).order_by('date_added')
-    context = {'topics': topics}
+    context = {'topics': topics, 'title': "Topics"}
     return render(request, 'learning_logs/topics.html', context)
 
 from django.http import HttpResponseRedirect, Http404
@@ -29,7 +30,7 @@ def topic(request, topic_id):
         raise Http404
 
     entries = topic.entry_set.order_by('-date_added')
-    context = {'topic': topic, 'entries': entries}
+    context = {'topic': topic, 'entries': entries, 'title': topic.text}
     return render(request, 'learning_logs/topic.html', context)
     # topic.html will have access to variables
     # 'topic' and 'entries' since they are keys of 'context'
@@ -54,7 +55,7 @@ def new_topic(request):
         new_topic.save()
         return HttpResponseRedirect(reverse('learning_logs:topics'))
     
-    context = {'form': form}
+    context = {'form': form, 'title': "New Topic"}
     return render(request, 'learning_logs/new_topic.html', context)
 
 @login_required
@@ -79,7 +80,7 @@ def new_entry(request, topic_id):
         new_entry.save()
         return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic_id]))
     
-    context = {'topic': topic, 'form': form}
+    context = {'topic': topic, 'form': form, 'title': "New Entry"}
     return render(request, 'learning_logs/new_entry.html', context)
 
 @login_required
@@ -100,5 +101,5 @@ def edit_entry(request, entry_id) :
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
-    context = {'entry': entry, 'topic': topic, 'form': form}
+    context = {'entry': entry, 'topic': topic, 'form': form, 'title': "Edit Entry"}
     return render(request, 'learning_logs/edit_entry.html', context)

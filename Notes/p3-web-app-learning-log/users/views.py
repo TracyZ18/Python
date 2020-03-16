@@ -25,5 +25,5 @@ def register(request):
             password=request.POST['password1'])
             login(request, authenticated_user)
             return redirect('/')
-    context = {'form': form}
+    context = {'form': form, 'title': "Register"}
     return render(request, 'users/register.html', context)

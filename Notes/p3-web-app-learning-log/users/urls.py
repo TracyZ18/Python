@@ -10,7 +10,7 @@ app_name = "users" # include() requires app_name
 
 urlpatterns = [
     # Login page
-    url('^login/', auth_views.LoginView.as_view(template_name='users/login.html'), name="login"),
+    url('^login/', auth_views.LoginView.as_view(extra_context={'title': "Log in"}, template_name='users/login.html'), name="login"),
     # Logout page
     url('^logout/', views.logout_view, name="logout"),
     # Registration page
