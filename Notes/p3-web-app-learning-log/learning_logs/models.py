@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Topic(models.Model) :
     """A topic the user is learning about"""
@@ -6,6 +7,8 @@ class Topic(models.Model) :
     # CharField, stores small amout of text (don't want huge Topics)
     date_added = models.DateTimeField(auto_now_add=True) 
     # auto_now_add, automatically add current date when create a new topic
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    # connect model to user
 
     def __str__(self): # similar to java's toString()
         """Return a string representation of the model."""
