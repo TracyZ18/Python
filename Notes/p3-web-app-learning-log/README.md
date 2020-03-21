@@ -8,6 +8,7 @@ MVC Architecture: model-view-controller
 - model : dynamic data structure
 - view : presentation of model
 - controller : respond to user input
+
 Django uses MVT, takes care of controller, allows templating
 
 ## Notes on Bootstrap
