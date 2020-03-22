@@ -63,7 +63,7 @@ append('death.csv',death_str)
 append('recovered.csv',recovered_str)
 append('montreal.csv',mtl_str)
 
-# make a new graph if new count appended
+# make a new graph
 import pandas as pd
 import matplotlib.pyplot as plt
 df = pd.read_csv("covid-19.csv", names=["DATE","COUNT"])
