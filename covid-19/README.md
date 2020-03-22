@@ -7,5 +7,5 @@ Collection of cases from the [Quebec government site](https://www.quebec.ca/sant
 ### Montreal Cases
 ![Montreal](./covid-19-montreal.png)
 
-## Stay at home!!
-## Restez chez vous!!
+## Note
+03/22 : The number of deaths related to COVID-19 is lower than what was announced on March 21, 2020. The test of one of these people was negative.
