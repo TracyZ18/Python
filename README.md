@@ -1,4 +1,2 @@
 # Python
-- study notes
-- simple projects
-- algorithm practices
+Python notes and practices
