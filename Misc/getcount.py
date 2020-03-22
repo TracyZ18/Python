@@ -6,6 +6,15 @@ pagebytes = fp.read()
 page = pagebytes.decode("utf8")
 fp.close()
 
+# get date, exit if not today
+index = page.find("Nombre de cas confirmés, en date")
+date_str = page[index+35:index+40]
+date_str = ''.join(x for x in date_str if x.isdigit())
+from datetime import datetime
+today = datetime.today().strftime('%d')
+if date_str != today :
+    exit()
+
 # get count
 index = page.find("<strong>Au Québec</strong>")
 segment = page[index+23:]
@@ -33,7 +42,6 @@ mtl_str = ''.join(x for x in mtl_str if x.isdigit())
 # function to append record
 def append(filename, record) :
     # construct csv string to append
-    from datetime import datetime
     csv_str = "\n"+datetime.today().strftime('%m-%d')+","+record
 
     # get latest in file
@@ -46,18 +54,14 @@ def append(filename, record) :
         cur_record = ''
 
     # only append if a new count is obtained
-    if cur_record != datetime.today().strftime('%m-%d')+","+record :
-        with open(filename,'a') as fd:
-            fd.write(csv_str)
-        return True
+    with open(filename,'a') as fd:
+        fd.write(csv_str)
 
 # append new record to each file
-appended = append('covid-19.csv',num_str)
-appended = append('death.csv',death_str) or appended
-appended = append('recovered.csv',recovered_str) or appended
-appended = append('montreal.csv',mtl_str) or appended
-if not appended :
-    exit()
+append('covid-19.csv',num_str)
+append('death.csv',death_str)
+append('recovered.csv',recovered_str)
+append('montreal.csv',mtl_str)
 
 # make a new graph if new count appended
 import pandas as pd
