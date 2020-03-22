@@ -1,27 +1,34 @@
 # get webpage content as bytes (UTF-8)
 # convert to string 
 import urllib.request
-fp = urllib.request.urlopen("https://www.quebec.ca/en/health/health-issues/a-z/2019-coronavirus/situation-coronavirus-in-quebec/")
+fp = urllib.request.urlopen("https://www.quebec.ca/sante/problemes-de-sante/a-z/coronavirus-2019/situation-coronavirus-quebec/")
 pagebytes = fp.read()
 page = pagebytes.decode("utf8")
 fp.close()
 
 # get count
-index = page.find("<strong>Québec</strong>")
+index = page.find("<strong>Au Québec</strong>")
 segment = page[index+23:]
 num_str = segment[:30]
 num_str = ''.join(x for x in num_str if x.isdigit())
 
 # get death
-index = segment.find("including")
+index = segment.find("dont")
 segment = segment[index:]
 death_str = segment[:30]
 death_str = ''.join(x for x in death_str if x.isdigit())
 
 # get recovered 
-index = segment.find("death")
-recovered_str = segment[index:index+30]
+index = segment.find("personnes décédées")
+segment = segment[index:]
+recovered_str = segment[:30]
 recovered_str = ''.join(x for x in recovered_str if x.isdigit())
+
+# get Montreal
+index = segment.find("06 - Montréal")
+segment = segment[index+30:]
+mtl_str = segment[:30]
+mtl_str = ''.join(x for x in mtl_str if x.isdigit())
 
 # function to append record
 def append(filename, record) :
@@ -36,17 +43,20 @@ def append(filename, record) :
         cur_record = cur_lines[-1]
     else :
         csv_str = csv_str[1:]
-        cur_record = ','
-    cur_record = cur_record[cur_record.find(",")+1:]
+        cur_record = ''
 
     # only append if a new count is obtained
-    if cur_record != record :
+    if cur_record != datetime.today().strftime('%m-%d')+","+record :
         with open(filename,'a') as fd:
             fd.write(csv_str)
         return True
 
 # append new record to each file
-if not (append('covid-19.csv',num_str) or append('death.csv',death_str) or append('recovered.csv',recovered_str)) :
+appended = append('covid-19.csv',num_str)
+appended = append('death.csv',death_str) or appended
+appended = append('recovered.csv',recovered_str) or appended
+appended = append('montreal.csv',mtl_str) or appended
+if not appended :
     exit()
 
 # make a new graph if new count appended
@@ -66,3 +76,7 @@ for x in range(len(death.index)) :
 
 df.plot.scatter(x='DATE',y='COUNT')
 plt.savefig('covid-19-active.png')
+
+mtl = pd.read_csv("montreal.csv", names=["DATE","COUNT"])
+mtl.plot.scatter(x='DATE',y='COUNT')
+plt.savefig('covid-19-montreal.png')
