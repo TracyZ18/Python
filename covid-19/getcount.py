@@ -54,8 +54,9 @@ def append(filename, record) :
         cur_record = ''
 
     # only append if a new count is obtained
-    with open(filename,'a') as fd:
-        fd.write(csv_str)
+    if cur_record != datetime.today().strftime('%m-%d')+","+record :
+        with open(filename,'a') as fd:
+            fd.write(csv_str)
 
 # append new record to each file
 append('covid-19.csv',num_str)
