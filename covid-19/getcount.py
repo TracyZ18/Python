@@ -17,9 +17,9 @@ if date_str != today :
 
 # get count
 index = page.find("<strong>Au Québec</strong>")
-segment = page[index+23:]
+segment = page[index+30:]
 num_str = segment[:30]
-num_str = ''.join(x for x in num_str if x.isdigit())
+num_str = ''.join(x for x in num_str if x.isdigit())\
 
 # get death
 index = segment.find("dont")
