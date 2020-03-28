@@ -76,8 +76,9 @@ plt.savefig('covid-19.png')
 
 # make graph of active cases (in progress)
 for x in range(len(death.index)) :
-    df.at[x+11,'COUNT'] -= death.at[x,'COUNT']
-    df.at[x+11,'COUNT'] -= recovered.at[x,'COUNT']
+    df.at[x+19,'COUNT'] -= death.at[x,'COUNT']
+    df.at[x+19,'COUNT'] -= recovered.at[x,'COUNT']
+
 
 df.plot.scatter(x='DATE',y='COUNT')
 plt.savefig('covid-19-active.png')

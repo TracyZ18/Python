@@ -1,5 +1,9 @@
 # COVID-19 Quebec
-Collection of cases from the [Quebec government site](https://www.quebec.ca/sante/problemes-de-sante/a-z/coronavirus-2019/situation-coronavirus-quebec/), French version. (Note: English version is not updated as frequently.)
+Collection of cases from the [Quebec government site](https://www.quebec.ca/sante/problemes-de-sante/a-z/coronavirus-2019/situation-coronavirus-quebec/), French version. 
+
+03-01 - 03-09 : from [Canada government site](https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html#a1)
+
+03-09 - 03-14 : from CTV and Global News
 
 ## Graphs
 ### Quebec Cases
@@ -14,3 +18,4 @@ Collection of cases from the [Quebec government site](https://www.quebec.ca/sant
 03/23 : The significant increase in confirmed cases is explained by the fact that on March 22, 2020, cases tested positive by hospital laboratories are now considered confirmed. They no longer need validation by the Laboratoire de santé publique du Québec (LSPQ).
 
 03/26 : The linear increase in recent dates likely attributes to the limited testing conducted per day. - Note by me (not authority)
+
