@@ -52,9 +52,13 @@ def append(filename, record) :
     else :
         csv_str = csv_str[1:]
         cur_record = ''
+    
+    # no record, use previous record
+    if not record :
+        csv_str += cur_record[6:]
 
     # only append if a new count is obtained
-    if cur_record != datetime.today().strftime('%m-%d')+","+record :
+    if ("\n" + cur_record) != csv_str :
         with open(filename,'a') as fd:
             fd.write(csv_str)
 

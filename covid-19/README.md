@@ -19,3 +19,5 @@ Collection of cases from the [Quebec government site](https://www.quebec.ca/sant
 
 03/26 : The linear increase in recent dates likely attributes to the limited testing conducted per day. - Note by me (not authority)
 
+03/29 : In days that lack recovered cases data, used previous day's count instead. - Note by me
+
