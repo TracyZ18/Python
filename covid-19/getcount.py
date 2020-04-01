@@ -10,9 +10,12 @@ fp.close()
 index = page.find("Nombre de cas confirmés, en date")
 date_str = page[index+35:index+40]
 date_str = ''.join(x for x in date_str if x.isdigit())
+if len(date_str) == 1 :
+    date_str = "0" + date_str
 from datetime import datetime
 today = datetime.today().strftime('%d')
 if date_str != today :
+    print(date_str)
     exit()
 
 # get count
