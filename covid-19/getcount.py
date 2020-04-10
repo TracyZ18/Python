@@ -30,12 +30,6 @@ segment = segment[index:]
 death_str = segment[:30]
 death_str = ''.join(x for x in death_str if x.isdigit())
 
-# get recovered 
-index = segment.find("personnes décédées")
-segment = segment[index:]
-recovered_str = segment[:30]
-recovered_str = ''.join(x for x in recovered_str if x.isdigit())
-
 # get Montreal
 index = segment.find("06 - Montréal")
 segment = segment[index+30:]
@@ -70,7 +64,6 @@ def append(filename, record) :
 # append new record to each file
 appended = append('covid-19.csv',num_str)
 appended = append('death.csv',death_str) or appended
-appended = append('recovered.csv',recovered_str) or appended
 appended = append('montreal.csv',mtl_str) or appended
 
 def graph() :
@@ -78,16 +71,8 @@ def graph() :
     import pandas as pd
     import matplotlib.pyplot as plt
     df = pd.read_csv("covid-19.csv", names=["DATE","COUNT"])
-    death = pd.read_csv("death.csv", names=["DATE","COUNT"])
-    recovered = pd.read_csv("recovered.csv", names=["DATE","COUNT"])
     df.plot.scatter(x='DATE',y='COUNT')
     plt.savefig('covid-19.png')
-    # make graph of active cases (in progress)
-    for x in range(len(death.index)) :
-        df.at[x+19,'COUNT'] -= death.at[x,'COUNT']
-        df.at[x+19,'COUNT'] -= recovered.at[x,'COUNT']
-    df.plot.scatter(x='DATE',y='COUNT')
-    plt.savefig('covid-19-active.png')
     mtl = pd.read_csv("montreal.csv", names=["DATE","COUNT"])
     mtl.plot.scatter(x='DATE',y='COUNT')
     plt.savefig('covid-19-montreal.png')
