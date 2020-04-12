@@ -23,3 +23,4 @@ Collection of cases from the [Quebec government site](https://www.quebec.ca/sant
 
 03/29 : In days that lack recovered cases data, used previous day's count instead. - Note by me
 
+04/10 : Stop updating "[recovered.csv](./recovered.csv)" since no further information has been given on the government site for the past while. - Note by me.
