@@ -24,3 +24,6 @@ Collection of cases from the [Quebec government site](https://www.quebec.ca/sant
 03/29 : In days that lack recovered cases data, used previous day's count instead. - Note by me
 
 04/10 : Stop updating "[recovered.csv](./recovered.csv)" since no further information has been given on the government site for the past while. - Note by me.
+
+## Future
+I'm stopping committing changes as of Apr. 30. I think find the [CTV page](https://www.ctvnews.ca/health/coronavirus/tracking-every-case-of-covid-19-in-canada-1.4852102#quebec) very handy to use. Stay safe, ça va bien aller :D
